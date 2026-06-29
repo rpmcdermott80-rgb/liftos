@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+
+<!-- PWA / Install to Home Screen -->
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="LiftOS"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#0c0c14"/>
+<meta name="application-name" content="LiftOS"/>
+
+<!-- Icons for home screen -->
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0iIzBjMGMxNCIvPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTEyIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMGEyZSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYzBjMTQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDwhLS0gTGlnaHRuaW5nIGJvbHQgLS0+CiAgPHBhdGggZD0iTTI5NiA4MCBMMTgwIDI4MCBIMjU2IEwyMTYgNDMyIEwzODAgMjAwIEgyOTYgTDM0MCA4MFoiIAogICAgICAgIGZpbGw9IiNmOTczMTYiIG9wYWNpdHk9IjAuOTUiLz4KICA8cGF0aCBkPSJNMjk2IDgwIEwxODAgMjgwIEgyNTYgTDIxNiA0MzIgTDM4MCAyMDAgSDI5NiBMMzQwIDgwWiIgCiAgICAgICAgZmlsbD0idXJsKCNsZykiLz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibGciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZiYmYyNCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYTU4MGMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgo8L3N2Zz4="/>
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0iIzBjMGMxNCIvPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTEyIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMGEyZSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwYzBjMTQiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDwhLS0gTGlnaHRuaW5nIGJvbHQgLS0+CiAgPHBhdGggZD0iTTI5NiA4MCBMMTgwIDI4MCBIMjU2IEwyMTYgNDMyIEwzODAgMjAwIEgyOTYgTDM0MCA4MFoiIAogICAgICAgIGZpbGw9IiNmOTczMTYiIG9wYWNpdHk9IjAuOTUiLz4KICA8cGF0aCBkPSJNMjk2IDgwIEwxODAgMjgwIEgyNTYgTDIxNiA0MzIgTDM4MCAyMDAgSDI5NiBMMzQwIDgwWiIgCiAgICAgICAgZmlsbD0idXJsKCNsZykiLz4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibGciIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZiYmYyNCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYTU4MGMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgo8L3N2Zz4="/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iIzBjMGMxNCIvPgogIDxwYXRoIGQ9Ik0xOC41IDRMMTEgMThIMTZMMTMgMjhMMjQgMTNIMTguNUwyMS41IDRaIiBmaWxsPSIjZjk3MzE2Ii8+Cjwvc3ZnPg=="/>
+<link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0iIzBjMGMxNCIvPgogIDxwYXRoIGQ9Ik0xOC41IDRMMTEgMThIMTZMMTMgMjhMMjQgMTNIMTguNUwyMS41IDRaIiBmaWxsPSIjZjk3MzE2Ii8+Cjwvc3ZnPg=="/>
+
+<!-- PWA Manifest (inline, no server needed) -->
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjogIkxpZnRPUyBHeW0gVHJhY2tlciIsICJzaG9ydF9uYW1lIjogIkxpZnRPUyIsICJkZXNjcmlwdGlvbiI6ICJZb3VyIGludGVsbGlnZW50IGd5bSB0cmFja2VyIiwgInN0YXJ0X3VybCI6ICIuIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwYzBjMTQiLCAidGhlbWVfY29sb3IiOiAiI2Y5NzMxNiIsICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsICJpY29ucyI6IFt7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSFpwWlhkQ2IzZzlJakFnTUNBMU1USWdOVEV5SWo0S0lDQThjbVZqZENCM2FXUjBhRDBpTlRFeUlpQm9aV2xuYUhROUlqVXhNaUlnY25nOUlqRXhNaUlnWm1sc2JEMGlJekJqTUdNeE5DSXZQZ29nSUR4eVpXTjBJSGRwWkhSb1BTSTFNVElpSUdobGFXZG9kRDBpTlRFeUlpQnllRDBpTVRFeUlpQm1hV3hzUFNKMWNtd29JMmNwSWk4K0NpQWdQR1JsWm5NK0NpQWdJQ0E4YkdsdVpXRnlSM0poWkdsbGJuUWdhV1E5SW1jaUlIZ3hQU0l3SWlCNU1UMGlNQ0lnZURJOUlqRWlJSGt5UFNJeElqNEtJQ0FnSUNBZ1BITjBiM0FnYjJabWMyVjBQU0l3SlNJZ2MzUnZjQzFqYjJ4dmNqMGlJekZoTUdFeVpTSXZQZ29nSUNBZ0lDQThjM1J2Y0NCdlptWnpaWFE5SWpFd01DVWlJSE4wYjNBdFkyOXNiM0k5SWlNd1l6QmpNVFFpTHo0S0lDQWdJRHd2YkdsdVpXRnlSM0poWkdsbGJuUStDaUFnUEM5a1pXWnpQZ29nSUR3aExTMGdUR2xuYUhSdWFXNW5JR0p2YkhRZ0xTMCtDaUFnUEhCaGRHZ2daRDBpVFRJNU5pQTRNQ0JNTVRnd0lESTRNQ0JJTWpVMklFd3lNVFlnTkRNeUlFd3pPREFnTWpBd0lFZ3lPVFlnVERNME1DQTRNRm9pSUFvZ0lDQWdJQ0FnSUdacGJHdzlJaU5tT1Rjek1UWWlJRzl3WVdOcGRIazlJakF1T1RVaUx6NEtJQ0E4Y0dGMGFDQmtQU0pOTWprMklEZ3dJRXd4T0RBZ01qZ3dJRWd5TlRZZ1RESXhOaUEwTXpJZ1RETTRNQ0F5TURBZ1NESTVOaUJNTXpRd0lEZ3dXaUlnQ2lBZ0lDQWdJQ0FnWm1sc2JEMGlkWEpzS0NOc1p5a2lMejRLSUNBOFpHVm1jejRLSUNBZ0lEeHNhVzVsWVhKSGNtRmthV1Z1ZENCcFpEMGliR2NpSUhneFBTSXdJaUI1TVQwaU1DSWdlREk5SWpBaUlIa3lQU0l4SWo0S0lDQWdJQ0FnUEhOMGIzQWdiMlptYzJWMFBTSXdKU0lnYzNSdmNDMWpiMnh2Y2owaUkyWmlZbVl5TkNJdlBnb2dJQ0FnSUNBOGMzUnZjQ0J2Wm1aelpYUTlJakV3TUNVaUlITjBiM0F0WTI5c2IzSTlJaU5sWVRVNE1HTWlMejRLSUNBZ0lEd3ZiR2x1WldGeVIzSmhaR2xsYm5RK0NpQWdQQzlrWldaelBnbzhMM04yWno0PSIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIsICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSJ9XX0="/>
+
+<!-- iOS splash screen colour -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+<title>LiftOS — Gym Tracker</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;background:#0c0c14;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior:none;color:#f0f0ff;}
+#app{min-height:100vh;max-width:520px;margin:0 auto;}
+
+/* NAV */
+.nav{background:#13131f;border-bottom:1px solid #22223a;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.logo{font-size:20px;font-weight:900;letter-spacing:-0.5px;color:#fff;}
+.logo span{color:#f97316;}
+.nav-tabs{display:flex;gap:2px;background:#0c0c14;border-radius:11px;padding:3px;}
+.nav-tab{background:transparent;border:none;border-radius:8px;padding:7px 11px;cursor:pointer;font-size:12px;font-weight:700;color:#5a5a7a;display:flex;align-items:center;gap:5px;transition:all .15s;}
+.nav-tab.active{background:#17172a;color:#f0f0ff;}
+
+/* CARDS */
+.card{background:#17172a;border:1px solid #22223a;border-radius:18px;margin-bottom:12px;overflow:hidden;}
+.card-pad{padding:16px 18px;}
+
+/* BUTTONS */
+.btn{border:none;border-radius:12px;padding:14px 0;cursor:pointer;font-size:15px;font-weight:800;width:100%;letter-spacing:.3px;transition:opacity .15s;}
+.btn:active{opacity:.75;}
+.btn-orange{background:#f97316;color:#fff;}
+.btn-blue{background:#3b82f6;color:#fff;}
+.btn-green{background:#22c55e;color:#fff;}
+.btn-surface{background:#13131f;border:1px solid #22223a;color:#5a5a7a;}
+.btn-sm{padding:8px 14px;font-size:12px;border-radius:8px;border:none;cursor:pointer;font-weight:700;transition:opacity .15s;}
+.btn-sm:active{opacity:.75;}
+
+/* INPUTS */
+.inp{background:#0c0c14;border:1px solid #22223a;border-radius:8px;color:#f0f0ff;padding:9px 6px;font-size:17px;font-weight:700;text-align:center;width:100%;outline:none;}
+.inp:focus{border-color:#f97316;}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:3px;background:#22223a;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid #0c0c14;}
+input[type=number]::-webkit-inner-spin-button{opacity:1;}
+
+/* TAGS */
+.tag{display:inline-block;border-radius:5px;padding:2px 7px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;}
+
+/* SECTIONS */
+.section-divider{display:flex;align-items:center;gap:10px;margin:20px 0 10px;}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:#22223a;}
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;}
+
+/* SPLASH */
+#splash{position:fixed;inset:0;background:#0c0c14;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease;}
+#splash.out{opacity:0;pointer-events:none;}
+.splash-icon{font-size:72px;margin-bottom:24px;animation:pulse 1.8s ease-in-out infinite;}
+.splash-name{font-size:40px;font-weight:900;color:#fff;letter-spacing:-1px;}
+.splash-name b{color:#f97316;}
+.splash-sub{font-size:15px;color:#5a5a7a;margin-top:8px;}
+.splash-dots{display:flex;gap:8px;margin-top:44px;}
+.splash-dot{width:9px;height:9px;border-radius:50%;background:#f97316;animation:bdot 1.3s ease-in-out infinite;}
+.splash-dot:nth-child(2){animation-delay:.2s;background:#fb923c;}
+.splash-dot:nth-child(3){animation-delay:.4s;background:#fdba74;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}
+@keyframes bdot{0%,80%,100%{transform:translateY(0);opacity:.4;}40%{transform:translateY(-8px);opacity:1;}}
+
+/* REST TIMER */
+.rest-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:300;display:flex;align-items:center;justify-content:center;}
+.rest-box{background:#17172a;border:1px solid #22223a;border-radius:24px;padding:36px 40px;text-align:center;min-width:260px;}
+
+/* PROGRESS DOTS */
+.set-dots{display:flex;gap:4px;}
+.set-dot{width:7px;height:7px;border-radius:50%;}
+
+/* CHART */
+.chart-wrap{width:100%;height:160px;position:relative;}
+canvas{display:block;}
+
+/* MISC */
+.muted{color:#5a5a7a;}
+.green{color:#22c55e;}
+.orange{color:#f97316;}
+.blue{color:#3b82f6;}
+.purple{color:#a855f7;}
+.bold{font-weight:700;}
+.row{display:flex;align-items:center;gap:10px;}
+.row-between{display:flex;align-items:center;justify-content:space-between;}
+select{background:#17172a;border:1px solid #22223a;border-radius:12px;color:#f0f0ff;padding:12px 16px;font-size:15px;outline:none;width:100%;}
+select option{background:#17172a;}
+.pr-badge{background:#17172a;border-radius:14px;padding:13px 8px;text-align:center;}
+
+/* ONBOARD */
+.ob-hero{background:linear-gradient(160deg,#17172a 0%,#0c0c14 100%);padding:60px 28px 40px;text-align:center;}
+.ob-feature{display:flex;align-items:flex-start;gap:14px;background:#17172a;border:1px solid #22223a;border-radius:16px;padding:16px;margin-bottom:14px;}
+.ob-icon{font-size:24px;width:44px;height:44px;background:#22223a;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <div class="splash-icon">⚡</div>
+  <div class="splash-name">LIFT<b>OS</b></div>
+  <div class="splash-sub">Your intelligent gym tracker</div>
+  <div class="splash-dots">
+    <div class="splash-dot"></div><div class="splash-dot"></div><div class="splash-dot"></div>
+  </div>
+</div>
+
+<div id="app" style="display:none;padding-bottom:40px;"></div>
+
+<script>
+'use strict';
+
+// ── CONSTANTS ────────────────────────────────────────────────────────────────
+const C = {
+  bg:'#0c0c14', surface:'#13131f', card:'#17172a', border:'#22223a',
+  text:'#f0f0ff', muted:'#5a5a7a', orange:'#f97316', blue:'#3b82f6',
+  purple:'#a855f7', green:'#22c55e', red:'#ef4444'
+};
+
+const HISTORY_KEY  = 'liftos_v6_history';
+const ROTATION_KEY = 'liftos_v6_rotation';
+const SEEN_KEY     = 'liftos_v6_seen';
+
+const RPE_LABELS = {6:'Very Easy',7:'Easy',8:'Moderate',9:'Hard',10:'Max Effort'};
+
+function loadData(k){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):null; }catch{ return null; } }
+function saveData(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch{} }
+function calc1RM(w,r){ return r===1?w:Math.round(w*(1+r/30)); }
+
+// ── EXERCISE DATA ────────────────────────────────────────────────────────────
+const EXERCISES = {
+  bench_press:      {name:'Bench Press',       muscle:'Chest',           cat:'push', sets:4, reps:8,  weight:60},
+  overhead_press:   {name:'Overhead Press',    muscle:'Shoulders',       cat:'push', sets:3, reps:10, weight:40},
+  incline_db_press: {name:'Incline DB Press',  muscle:'Upper Chest',     cat:'push', sets:3, reps:12, weight:24},
+  lateral_raises:   {name:'Lateral Raises',    muscle:'Shoulders',       cat:'push', sets:3, reps:15, weight:10},
+  tricep_dips:      {name:'Tricep Dips',       muscle:'Triceps',         cat:'push', sets:3, reps:12, weight:0},
+  cable_flyes:      {name:'Cable Flyes',       muscle:'Chest',           cat:'push', sets:3, reps:15, weight:15},
+  deadlift:         {name:'Deadlift',          muscle:'Back / Glutes',   cat:'pull', sets:4, reps:5,  weight:100},
+  pull_ups:         {name:'Pull Ups',          muscle:'Lats',            cat:'pull', sets:3, reps:8,  weight:0},
+  bent_row:         {name:'Bent-Over Row',     muscle:'Back',            cat:'pull', sets:3, reps:8,  weight:60},
+  bicep_curls:      {name:'Bicep Curls',       muscle:'Biceps',          cat:'pull', sets:3, reps:12, weight:14},
+  face_pulls:       {name:'Face Pulls',        muscle:'Rear Delts',      cat:'pull', sets:3, reps:15, weight:20},
+  lat_pulldown:     {name:'Lat Pulldown',      muscle:'Lats',            cat:'pull', sets:3, reps:12, weight:60},
+  squat:            {name:'Squat',             muscle:'Quads / Glutes',  cat:'legs', sets:4, reps:8,  weight:80},
+  leg_press:        {name:'Leg Press',         muscle:'Quads',           cat:'legs', sets:3, reps:12, weight:120},
+  calf_raises:      {name:'Calf Raises',       muscle:'Calves',          cat:'legs', sets:3, reps:20, weight:60},
+  romanian_dl:      {name:'Romanian Deadlift', muscle:'Hamstrings',      cat:'legs', sets:3, reps:10, weight:70},
+  leg_curls:        {name:'Leg Curls',         muscle:'Hamstrings',      cat:'legs', sets:3, reps:12, weight:40},
+  lunges:           {name:'Walking Lunges',    muscle:'Quads / Glutes',  cat:'legs', sets:3, reps:12, weight:20},
+  crunches:         {name:'Crunches',          muscle:'Abs',             cat:'abs',  sets:3, reps:20, weight:0},
+  hanging_leg_raises:{name:'Hanging Leg Raises',muscle:'Abs / Hip Flex', cat:'abs',  sets:3, reps:12, weight:0},
+  plank:            {name:'Plank',             muscle:'Core',            cat:'abs',  sets:3, reps:60, weight:0},
+};
+
+const PLANS = {
+  push: {
+    45: {main:['bench_press','overhead_press','tricep_dips'],       legs:['squat','leg_press','calf_raises'],      abs:['crunches']},
+    60: {main:['bench_press','overhead_press','incline_db_press','lateral_raises','tricep_dips'], legs:['squat','leg_press'], abs:['crunches','plank']},
+  },
+  pull: {
+    45: {main:['deadlift','pull_ups','bent_row','bicep_curls'],     legs:['romanian_dl','leg_curls'],              abs:['hanging_leg_raises']},
+    60: {main:['deadlift','pull_ups','bent_row','bicep_curls','face_pulls','lat_pulldown'], legs:['romanian_dl','leg_curls'], abs:['hanging_leg_raises','plank']},
+  }
+};
+
+const WTYPE = {
+  push:{label:'Push + Legs + Abs', short:'Push Day', desc:'Chest · Shoulders · Triceps + Legs + Abs', color:C.orange},
+  pull:{label:'Pull + Legs + Abs', short:'Pull Day',  desc:'Back · Biceps · Rear Delts + Legs + Abs',  color:C.blue},
+};
+
+// ── SVG ILLUSTRATIONS ────────────────────────────────────────────────────────
+const SVG = {
+bench_press:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="40" y="118" width="200" height="14" rx="7" fill="#2a2a4a"/>
+<rect x="88" y="38" width="10" height="82" rx="4" fill="#333355"/>
+<rect x="182" y="38" width="10" height="82" rx="4" fill="#333355"/>
+<rect x="62" y="56" width="156" height="10" rx="5" fill="#888aaa"/>
+<ellipse cx="62" cy="61" rx="14" ry="18" fill="COL" opacity=".9"/>
+<ellipse cx="218" cy="61" rx="14" ry="18" fill="COL" opacity=".9"/>
+<ellipse cx="218" cy="61" rx="8" ry="12" fill="COL"/>
+<ellipse cx="140" cy="113" rx="80" ry="9" fill="#d4a574"/>
+<ellipse cx="212" cy="100" rx="15" ry="16" fill="#f5c8a0"/>
+<ellipse cx="212" cy="88" rx="15" ry="8" fill="#4a3020"/>
+<line x1="110" y1="107" x2="96" y2="67" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="170" y1="107" x2="184" y2="67" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<text x="140" y="172" text-anchor="middle" fill="#888aaa" font-size="13" font-family="system-ui" font-weight="600">BENCH PRESS</text></svg>`,
+
+overhead_press:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="68" y="72" width="24" height="38" rx="8" fill="#d4a574"/>
+<rect x="80" y="42" rx="13" ry="22" fill="#f5c8a0"/>
+<ellipse cx="80" cy="55" rx="13" ry="15" fill="#f5c8a0"/>
+<ellipse cx="80" cy="43" rx="13" ry="8" fill="#4a3020"/>
+<rect x="126" y="104" width="10" height="28" rx="5" fill="#3a3a6a"/>
+<rect x="144" y="104" width="10" height="28" rx="5" fill="#3a3a6a"/>
+<line x1="68" y1="82" x2="48" y2="54" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="92" y1="82" x2="112" y2="54" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<rect x="36" y="44" width="88" height="8" rx="4" fill="#888aaa"/>
+<ellipse cx="36" cy="48" rx="14" ry="18" fill="COL" opacity=".9"/>
+<ellipse cx="124" cy="48" rx="14" ry="18" fill="COL" opacity=".9"/>
+<rect x="70" y="130" width="20" height="4" rx="2" fill="#2a2a4a"/>
+<text x="80" y="175" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">OVERHEAD PRESS</text></svg>`,
+
+incline_db_press:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="30" y="80" width="130" height="14" rx="7" fill="#2a2a4a" transform="rotate(-28,95,87)"/>
+<rect x="150" y="115" width="80" height="14" rx="7" fill="#2a2a4a"/>
+<ellipse cx="110" cy="84" rx="72" ry="10" fill="#d4a574" transform="rotate(-28,110,84)"/>
+<ellipse cx="178" cy="56" rx="17" ry="18" fill="#f5c8a0"/>
+<ellipse cx="178" cy="43" rx="17" ry="9" fill="#4a3020"/>
+<line x1="108" y1="76" x2="78" y2="54" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<rect x="54" y="46" width="30" height="10" rx="5" fill="#666888"/>
+<rect x="50" y="44" width="10" height="14" rx="5" fill="COL"/>
+<rect x="78" y="44" width="10" height="14" rx="5" fill="COL"/>
+<line x1="148" y1="74" x2="178" y2="52" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<rect x="180" y="44" width="30" height="10" rx="5" fill="#666888"/>
+<rect x="176" y="42" width="10" height="14" rx="5" fill="COL"/>
+<rect x="204" y="42" width="10" height="14" rx="5" fill="COL"/>
+<text x="140" y="174" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">INCLINE DB PRESS</text></svg>`,
+
+lateral_raises:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="124" y="76" width="14" height="50" rx="6" fill="#3a3a6a"/>
+<rect x="142" y="76" width="14" height="50" rx="6" fill="#3a3a6a"/>
+<ellipse cx="131" cy="153" rx="11" ry="6" fill="#222"/>
+<ellipse cx="149" cy="153" rx="11" ry="6" fill="#222"/>
+<rect x="118" y="44" width="44" height="34" rx="10" fill="#d4a574"/>
+<ellipse cx="140" cy="32" rx="19" ry="21" fill="#f5c8a0"/>
+<ellipse cx="140" cy="16" rx="19" ry="10" fill="#4a3020"/>
+<line x1="118" y1="54" x2="44" y2="66" stroke="#f5c8a0" stroke-width="12" stroke-linecap="round"/>
+<line x1="162" y1="54" x2="236" y2="66" stroke="#f5c8a0" stroke-width="12" stroke-linecap="round"/>
+<rect x="20" y="60" width="28" height="10" rx="5" fill="#666888"/>
+<rect x="16" y="57" width="10" height="16" rx="5" fill="COL"/>
+<rect x="42" y="57" width="10" height="16" rx="5" fill="COL"/>
+<rect x="232" y="60" width="28" height="10" rx="5" fill="#666888"/>
+<rect x="228" y="57" width="10" height="16" rx="5" fill="COL"/>
+<rect x="254" y="57" width="10" height="16" rx="5" fill="COL"/>
+<rect x="60" y="155" width="160" height="4" rx="2" fill="#2a2a4a"/>
+<text x="140" y="174" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">LATERAL RAISES</text></svg>`,
+
+tricep_dips:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="60" y="62" width="18" height="90" rx="8" fill="#444466"/>
+<rect x="202" y="62" width="18" height="90" rx="8" fill="#444466"/>
+<rect x="56" y="54" width="26" height="16" rx="8" fill="COL" opacity=".8"/>
+<rect x="198" y="54" width="26" height="16" rx="8" fill="COL" opacity=".8"/>
+<ellipse cx="140" cy="44" rx="19" ry="21" fill="#f5c8a0"/>
+<ellipse cx="140" cy="27" rx="19" ry="11" fill="#4a3020"/>
+<rect x="118" y="64" width="44" height="42" rx="10" fill="#d4a574"/>
+<line x1="118" y1="74" x2="78" y2="68" stroke="#f5c8a0" stroke-width="13" stroke-linecap="round"/>
+<line x1="162" y1="74" x2="202" y2="68" stroke="#f5c8a0" stroke-width="13" stroke-linecap="round"/>
+<line x1="130" y1="106" x2="118" y2="144" stroke="#3a3a6a" stroke-width="12" stroke-linecap="round"/>
+<line x1="150" y1="106" x2="162" y2="144" stroke="#3a3a6a" stroke-width="12" stroke-linecap="round"/>
+<text x="140" y="176" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">TRICEP DIPS</text></svg>`,
+
+cable_flyes:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="10" y="20" width="22" height="130" rx="6" fill="#333355"/>
+<rect x="248" y="20" width="22" height="130" rx="6" fill="#333355"/>
+<circle cx="21" cy="72" r="10" fill="COL" opacity=".8"/>
+<circle cx="259" cy="72" r="10" fill="COL" opacity=".8"/>
+<rect x="126" y="60" width="28" height="46" rx="10" fill="#d4a574"/>
+<ellipse cx="140" cy="48" rx="18" ry="20" fill="#f5c8a0"/>
+<ellipse cx="140" cy="32" rx="18" ry="10" fill="#4a3020"/>
+<rect x="128" y="104" width="12" height="36" rx="6" fill="#3a3a6a"/>
+<rect x="140" y="104" width="12" height="36" rx="6" fill="#3a3a6a"/>
+<line x1="126" y1="72" x2="46" y2="80" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="154" y1="72" x2="234" y2="80" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="46" y1="80" x2="21" y2="72" stroke="#666888" stroke-width="3" stroke-dasharray="4,3"/>
+<line x1="234" y1="80" x2="259" y2="72" stroke="#666888" stroke-width="3" stroke-dasharray="4,3"/>
+<text x="140" y="174" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">CABLE FLYES</text></svg>`,
+
+deadlift:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="46" y="116" width="188" height="10" rx="5" fill="#888aaa"/>
+<ellipse cx="46" cy="121" rx="18" ry="24" fill="COL" opacity=".9"/>
+<ellipse cx="234" cy="121" rx="18" ry="24" fill="COL" opacity=".9"/>
+<ellipse cx="46" cy="121" rx="10" ry="16" fill="COL"/>
+<ellipse cx="234" cy="121" rx="10" ry="16" fill="COL"/>
+<line x1="128" y1="116" x2="112" y2="150" stroke="#3a3a6a" stroke-width="14" stroke-linecap="round"/>
+<line x1="152" y1="116" x2="168" y2="150" stroke="#3a3a6a" stroke-width="14" stroke-linecap="round"/>
+<ellipse cx="108" cy="155" rx="14" ry="8" fill="#222"/>
+<ellipse cx="172" cy="155" rx="14" ry="8" fill="#222"/>
+<rect x="112" y="70" width="56" height="48" rx="10" fill="#d4a574" transform="rotate(-20,140,94)"/>
+<ellipse cx="172" cy="54" rx="19" ry="21" fill="#f5c8a0" transform="rotate(-10,172,54)"/>
+<ellipse cx="172" cy="37" rx="19" ry="10" fill="#4a3020"/>
+<line x1="120" y1="84" x2="108" y2="120" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="156" y1="80" x2="172" y2="120" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<rect x="40" y="156" width="200" height="4" rx="2" fill="#2a2a4a"/>
+<text x="140" y="174" text-anchor="middle" fill="#888aaa" font-size="13" font-family="system-ui" font-weight="600">DEADLIFT</text></svg>`,
+
+pull_ups:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="30" y="18" width="220" height="10" rx="5" fill="#888aaa"/>
+<rect x="24" y="10" width="18" height="22" rx="8" fill="COL" opacity=".9"/>
+<rect x="238" y="10" width="18" height="22" rx="8" fill="COL" opacity=".9"/>
+<line x1="108" y1="28" x2="118" y2="56" stroke="#f5c8a0" stroke-width="12" stroke-linecap="round"/>
+<line x1="172" y1="28" x2="162" y2="56" stroke="#f5c8a0" stroke-width="12" stroke-linecap="round"/>
+<ellipse cx="140" cy="46" rx="20" ry="22" fill="#f5c8a0"/>
+<ellipse cx="140" cy="29" rx="20" ry="11" fill="#4a3020"/>
+<rect x="120" y="66" width="40" height="48" rx="10" fill="#d4a574"/>
+<line x1="130" y1="114" x2="114" y2="148" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<line x1="150" y1="114" x2="166" y2="148" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<text x="140" y="178" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">PULL UPS</text></svg>`,
+
+bent_row:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="52" y="96" width="176" height="10" rx="5" fill="#888aaa"/>
+<ellipse cx="52" cy="101" rx="16" ry="20" fill="COL" opacity=".9"/>
+<ellipse cx="228" cy="101" rx="16" ry="20" fill="COL" opacity=".9"/>
+<line x1="118" y1="122" x2="100" y2="158" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<line x1="162" y1="122" x2="180" y2="158" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<ellipse cx="96" cy="162" rx="13" ry="7" fill="#222"/>
+<ellipse cx="184" cy="162" rx="13" ry="7" fill="#222"/>
+<rect x="104" y="68" width="72" height="36" rx="10" fill="#d4a574" transform="rotate(-20,140,86)"/>
+<ellipse cx="192" cy="56" rx="18" ry="20" fill="#f5c8a0" transform="rotate(-10,192,56)"/>
+<ellipse cx="192" cy="40" rx="18" ry="10" fill="#4a3020"/>
+<line x1="116" y1="82" x2="100" y2="98" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="158" y1="78" x2="180" y2="98" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<rect x="40" y="162" width="200" height="4" rx="2" fill="#2a2a4a"/>
+<text x="140" y="176" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">BENT-OVER ROW</text></svg>`,
+
+bicep_curls:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="126" y="56" width="28" height="40" rx="10" fill="#d4a574"/>
+<ellipse cx="140" cy="44" rx="18" ry="20" fill="#f5c8a0"/>
+<ellipse cx="140" cy="28" rx="18" ry="10" fill="#4a3020"/>
+<rect x="128" y="94" width="12" height="36" rx="6" fill="#3a3a6a"/>
+<rect x="140" y="94" width="12" height="36" rx="6" fill="#3a3a6a"/>
+<ellipse cx="134" cy="130" rx="10" ry="6" fill="#222"/>
+<ellipse cx="146" cy="130" rx="10" ry="6" fill="#222"/>
+<line x1="126" y1="66" x2="104" y2="76" stroke="#f5c8a0" stroke-width="12" stroke-linecap="round"/>
+<line x1="104" y1="76" x2="88" y2="52" stroke="#f5c8a0" stroke-width="12" stroke-linecap="round"/>
+<rect x="72" y="46" width="28" height="10" rx="5" fill="#666888"/>
+<rect x="68" y="43" width="10" height="16" rx="5" fill="COL"/>
+<rect x="94" y="43" width="10" height="16" rx="5" fill="COL"/>
+<line x1="154" y1="66" x2="178" y2="76" stroke="#f5c8a0" stroke-width="12" stroke-linecap="round"/>
+<line x1="178" y1="76" x2="186" y2="98" stroke="#f5c8a0" stroke-width="12" stroke-linecap="round"/>
+<rect x="174" y="96" width="28" height="10" rx="5" fill="#666888"/>
+<rect x="170" y="93" width="10" height="16" rx="5" fill="COL"/>
+<rect x="196" y="93" width="10" height="16" rx="5" fill="COL"/>
+<text x="140" y="148" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">BICEP CURLS</text></svg>`,
+
+face_pulls:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="232" y="20" width="28" height="140" rx="8" fill="#333355"/>
+<circle cx="246" cy="72" r="12" fill="COL" opacity=".8"/>
+<rect x="46" y="50" width="36" height="48" rx="10" fill="#d4a574"/>
+<ellipse cx="64" cy="38" rx="18" ry="20" fill="#f5c8a0"/>
+<ellipse cx="64" cy="22" rx="18" ry="10" fill="#4a3020"/>
+<rect x="50" y="94" width="14" height="38" rx="6" fill="#3a3a6a"/>
+<rect x="64" y="94" width="14" height="38" rx="6" fill="#3a3a6a"/>
+<line x1="82" y1="58" x2="170" y2="54" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="82" y1="64" x2="170" y2="68" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="170" y1="54" x2="234" y2="54" stroke="#666888" stroke-width="3" stroke-dasharray="5,3"/>
+<line x1="170" y1="68" x2="234" y2="68" stroke="#666888" stroke-width="3" stroke-dasharray="5,3"/>
+<rect x="20" y="130" width="180" height="4" rx="2" fill="#2a2a4a"/>
+<text x="100" y="148" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">FACE PULLS</text></svg>`,
+
+lat_pulldown:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="60" y="10" width="160" height="10" rx="5" fill="#333355"/>
+<rect x="240" y="30" width="28" height="100" rx="6" fill="#222244"/>
+<rect x="244" y="34" width="20" height="12" rx="3" fill="COL" opacity=".7"/>
+<line x1="140" y1="20" x2="140" y2="46" stroke="#666888" stroke-width="4"/>
+<rect x="62" y="44" width="156" height="8" rx="4" fill="#888aaa"/>
+<rect x="56" y="40" width="14" height="16" rx="7" fill="COL" opacity=".8"/>
+<rect x="210" y="40" width="14" height="16" rx="7" fill="COL" opacity=".8"/>
+<rect x="110" y="128" width="60" height="10" rx="5" fill="#2a2a4a"/>
+<rect x="116" y="58" width="48" height="50" rx="10" fill="#d4a574"/>
+<ellipse cx="140" cy="46" rx="19" ry="21" fill="#f5c8a0"/>
+<ellipse cx="140" cy="29" rx="19" ry="11" fill="#4a3020"/>
+<line x1="116" y1="68" x2="86" y2="54" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="164" y1="68" x2="194" y2="54" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<text x="140" y="148" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">LAT PULLDOWN</text></svg>`,
+
+squat:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="72" y="22" width="10" height="120" rx="4" fill="#333355"/>
+<rect x="198" y="22" width="10" height="120" rx="4" fill="#333355"/>
+<rect x="50" y="62" width="180" height="10" rx="5" fill="#888aaa"/>
+<ellipse cx="50" cy="67" rx="16" ry="20" fill="COL" opacity=".9"/>
+<ellipse cx="230" cy="67" rx="16" ry="20" fill="COL" opacity=".9"/>
+<rect x="120" y="68" width="40" height="38" rx="10" fill="#d4a574"/>
+<ellipse cx="140" cy="56" rx="19" ry="21" fill="#f5c8a0"/>
+<ellipse cx="140" cy="39" rx="19" ry="10" fill="#4a3020"/>
+<line x1="120" y1="76" x2="82" y2="68" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="160" y1="76" x2="198" y2="68" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="126" y1="106" x2="86" y2="142" stroke="#3a3a6a" stroke-width="14" stroke-linecap="round"/>
+<line x1="154" y1="106" x2="194" y2="142" stroke="#3a3a6a" stroke-width="14" stroke-linecap="round"/>
+<line x1="86" y1="142" x2="96" y2="164" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<line x1="194" y1="142" x2="184" y2="164" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<ellipse cx="98" cy="165" rx="13" ry="7" fill="#222"/>
+<ellipse cx="182" cy="165" rx="13" ry="7" fill="#222"/>
+<rect x="40" y="166" width="200" height="4" rx="2" fill="#2a2a4a"/>
+<text x="140" y="178" text-anchor="middle" fill="#888aaa" font-size="13" font-family="system-ui" font-weight="600">SQUAT</text></svg>`,
+
+leg_press:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="10" y="90" width="90" height="70" rx="10" fill="#222244"/>
+<rect x="14" y="34" width="82" height="62" rx="8" fill="#1a1a38"/>
+<rect x="108" y="52" width="80" height="14" rx="7" fill="#333355"/>
+<rect x="100" y="48" width="16" height="22" rx="7" fill="COL" opacity=".8"/>
+<rect x="172" y="48" width="16" height="22" rx="7" fill="COL" opacity=".8"/>
+<ellipse cx="36" cy="58" rx="11" ry="12" fill="#f5c8a0"/>
+<rect x="26" y="68" width="50" height="14" rx="6" fill="#d4a574"/>
+<line x1="68" y1="76" x2="86" y2="56" stroke="#3a3a6a" stroke-width="12" stroke-linecap="round"/>
+<line x1="76" y1="78" x2="94" y2="58" stroke="#3a3a6a" stroke-width="12" stroke-linecap="round"/>
+<line x1="86" y1="56" x2="100" y2="56" stroke="#333" stroke-width="10" stroke-linecap="round"/>
+<text x="140" y="174" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">LEG PRESS</text></svg>`,
+
+calf_raises:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="80" y="138" width="120" height="18" rx="6" fill="#2a2a4a"/>
+<rect x="38" y="30" width="10" height="140" rx="4" fill="#333355"/>
+<rect x="36" y="68" width="50" height="8" rx="4" fill="#444466"/>
+<rect x="122" y="40" width="36" height="48" rx="10" fill="#d4a574"/>
+<ellipse cx="140" cy="28" rx="19" ry="20" fill="#f5c8a0"/>
+<ellipse cx="140" cy="12" rx="19" ry="10" fill="#4a3020"/>
+<line x1="122" y1="54" x2="86" y2="52" stroke="#f5c8a0" stroke-width="10" stroke-linecap="round"/>
+<rect x="126" y="84" width="14" height="34" rx="6" fill="#3a3a6a"/>
+<rect x="140" y="84" width="14" height="36" rx="6" fill="#3a3a6a"/>
+<ellipse cx="133" cy="140" rx="10" ry="5" fill="#222"/>
+<ellipse cx="147" cy="140" rx="10" ry="5" fill="#222"/>
+<text x="140" y="174" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">CALF RAISES</text></svg>`,
+
+romanian_dl:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="52" y="104" width="176" height="10" rx="5" fill="#888aaa"/>
+<ellipse cx="52" cy="109" rx="16" ry="20" fill="COL" opacity=".9"/>
+<ellipse cx="228" cy="109" rx="16" ry="20" fill="COL" opacity=".9"/>
+<line x1="126" y1="128" x2="114" y2="162" stroke="#3a3a6a" stroke-width="14" stroke-linecap="round"/>
+<line x1="154" y1="128" x2="166" y2="162" stroke="#3a3a6a" stroke-width="14" stroke-linecap="round"/>
+<ellipse cx="110" cy="166" rx="13" ry="7" fill="#222"/>
+<ellipse cx="170" cy="166" rx="13" ry="7" fill="#222"/>
+<rect x="106" y="60" width="68" height="36" rx="10" fill="#d4a574" transform="rotate(-38,140,78)"/>
+<ellipse cx="196" cy="44" rx="18" ry="20" fill="#f5c8a0" transform="rotate(-15,196,44)"/>
+<ellipse cx="196" cy="28" rx="18" ry="10" fill="#4a3020"/>
+<line x1="124" y1="84" x2="114" y2="108" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="158" y1="76" x2="168" y2="108" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<rect x="40" y="166" width="200" height="4" rx="2" fill="#2a2a4a"/>
+<text x="140" y="178" text-anchor="middle" fill="#888aaa" font-size="11" font-family="system-ui" font-weight="600">ROMANIAN DEADLIFT</text></svg>`,
+
+leg_curls:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="20" y="90" width="240" height="14" rx="7" fill="#2a2a4a"/>
+<rect x="174" y="108" width="44" height="12" rx="6" fill="COL" opacity=".8"/>
+<ellipse cx="118" cy="86" rx="90" ry="9" fill="#d4a574"/>
+<ellipse cx="32" cy="76" rx="15" ry="16" fill="#f5c8a0"/>
+<rect x="130" y="82" width="68" height="12" rx="6" fill="#3a3a6a"/>
+<line x1="188" y1="88" x2="194" y2="56" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<line x1="200" y1="88" x2="208" y2="56" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<text x="140" y="148" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">LEG CURLS</text></svg>`,
+
+lunges:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="118" y="34" width="36" height="48" rx="10" fill="#d4a574"/>
+<ellipse cx="136" cy="22" rx="19" ry="18" fill="#f5c8a0"/>
+<ellipse cx="136" cy="8" rx="19" ry="10" fill="#4a3020"/>
+<line x1="118" y1="50" x2="90" y2="60" stroke="#f5c8a0" stroke-width="10" stroke-linecap="round"/>
+<rect x="66" y="54" width="28" height="10" rx="5" fill="#666888"/>
+<rect x="62" y="51" width="10" height="16" rx="5" fill="COL"/>
+<rect x="88" y="51" width="10" height="16" rx="5" fill="COL"/>
+<line x1="154" y1="50" x2="180" y2="60" stroke="#f5c8a0" stroke-width="10" stroke-linecap="round"/>
+<rect x="178" y="54" width="28" height="10" rx="5" fill="#666888"/>
+<rect x="174" y="51" width="10" height="16" rx="5" fill="COL"/>
+<rect x="200" y="51" width="10" height="16" rx="5" fill="COL"/>
+<line x1="128" y1="82" x2="98" y2="118" stroke="#3a3a6a" stroke-width="14" stroke-linecap="round"/>
+<line x1="98" y1="118" x2="82" y2="144" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<ellipse cx="78" cy="146" rx="14" ry="8" fill="#222"/>
+<line x1="144" y1="82" x2="178" y2="118" stroke="#3a3a6a" stroke-width="14" stroke-linecap="round"/>
+<line x1="178" y1="118" x2="188" y2="144" stroke="#3a3a6a" stroke-width="12" stroke-linecap="round"/>
+<ellipse cx="192" cy="145" rx="14" ry="7" fill="#222"/>
+<rect x="30" y="148" width="220" height="4" rx="2" fill="#2a2a4a"/>
+<text x="136" y="162" text-anchor="middle" fill="#888aaa" font-size="12" font-family="system-ui" font-weight="600">WALKING LUNGES</text></svg>`,
+
+crunches:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="30" y="138" width="220" height="8" rx="4" fill="#1e1e38"/>
+<line x1="80" y1="136" x2="140" y2="136" stroke="#3a3a6a" stroke-width="12" stroke-linecap="round"/>
+<line x1="140" y1="136" x2="168" y2="108" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<line x1="80" y1="136" x2="108" y2="108" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<ellipse cx="140" cy="134" rx="22" ry="10" fill="#d4a574"/>
+<rect x="128" y="94" width="36" height="44" rx="10" fill="#d4a574" transform="rotate(-38,146,116)"/>
+<ellipse cx="148" cy="112" rx="14" ry="20" fill="COL" opacity=".15" transform="rotate(-38,148,112)"/>
+<ellipse cx="174" cy="80" rx="18" ry="20" fill="#f5c8a0" transform="rotate(-30,174,80)"/>
+<ellipse cx="174" cy="64" rx="18" ry="10" fill="#4a3020" transform="rotate(-30,174,64)"/>
+<line x1="162" y1="96" x2="152" y2="78" stroke="#f5c8a0" stroke-width="9" stroke-linecap="round"/>
+<line x1="172" y1="92" x2="168" y2="74" stroke="#f5c8a0" stroke-width="9" stroke-linecap="round"/>
+<text x="140" y="174" text-anchor="middle" fill="#888aaa" font-size="13" font-family="system-ui" font-weight="600">CRUNCHES</text></svg>`,
+
+hanging_leg_raises:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="30" y="14" width="220" height="9" rx="4.5" fill="#888aaa"/>
+<rect x="24" y="6" width="18" height="22" rx="8" fill="COL" opacity=".85"/>
+<rect x="238" y="6" width="18" height="22" rx="8" fill="COL" opacity=".85"/>
+<line x1="108" y1="23" x2="116" y2="48" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<line x1="172" y1="23" x2="164" y2="48" stroke="#f5c8a0" stroke-width="11" stroke-linecap="round"/>
+<ellipse cx="140" cy="40" rx="19" ry="21" fill="#f5c8a0"/>
+<ellipse cx="140" cy="23" rx="19" ry="11" fill="#4a3020"/>
+<rect x="122" y="58" width="36" height="44" rx="10" fill="#d4a574"/>
+<line x1="130" y1="102" x2="100" y2="130" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<line x1="150" y1="102" x2="180" y2="130" stroke="#3a3a6a" stroke-width="13" stroke-linecap="round"/>
+<line x1="100" y1="130" x2="68" y2="128" stroke="#3a3a6a" stroke-width="12" stroke-linecap="round"/>
+<line x1="180" y1="130" x2="212" y2="128" stroke="#3a3a6a" stroke-width="12" stroke-linecap="round"/>
+<ellipse cx="60" cy="128" rx="12" ry="7" fill="#222"/>
+<ellipse cx="220" cy="128" rx="12" ry="7" fill="#222"/>
+<ellipse cx="140" cy="100" rx="14" ry="10" fill="COL" opacity=".25"/>
+<text x="140" y="172" text-anchor="middle" fill="#888aaa" font-size="11" font-family="system-ui" font-weight="600">HANGING LEG RAISES</text></svg>`,
+
+plank:`<svg viewBox="0 0 280 180"><rect width="280" height="180" fill="#0d0d20"/>
+<rect x="20" y="140" width="240" height="8" rx="4" fill="#1e1e38"/>
+<ellipse cx="56" cy="138" rx="12" ry="6" fill="#222"/>
+<ellipse cx="76" cy="138" rx="12" ry="6" fill="#222"/>
+<rect x="54" y="120" width="36" height="18" rx="7" fill="#3a3a6a"/>
+<rect x="72" y="110" width="130" height="22" rx="10" fill="#d4a574"/>
+<ellipse cx="130" cy="121" rx="38" ry="9" fill="COL" opacity=".2"/>
+<rect x="188" y="128" width="44" height="12" rx="6" fill="#f5c8a0"/>
+<rect x="200" y="134" width="44" height="10" rx="5" fill="#e8b890"/>
+<ellipse cx="196" cy="132" rx="10" ry="8" fill="#f5c8a0"/>
+<ellipse cx="224" cy="106" rx="18" ry="20" fill="#f5c8a0"/>
+<ellipse cx="224" cy="90" rx="18" ry="10" fill="#4a3020"/>
+<rect x="94" y="148" width="92" height="22" rx="11" fill="#1a2a1a" stroke="COL" stroke-width="1"/>
+<text x="140" y="163" text-anchor="middle" fill="COL" font-size="11" font-family="system-ui" font-weight="700">Timed Hold</text>
+<text x="140" y="178" text-anchor="middle" fill="#888aaa" font-size="13" font-family="system-ui" font-weight="600">PLANK</text></svg>`,
+};
+
+function getIllustration(id, color, size) {
+  const s = SVG[id] || SVG.bench_press;
+  const svg = s.replace(/COL/g, color || '#f97316');
+  const h = size === 'small' ? 54 : 190;
+  const w = size === 'small' ? 54 : '100%';
+  const br = size === 'small' ? 10 : 14;
+  return `<div style="width:${w};height:${h}px;border-radius:${br}px;overflow:hidden;flex-shrink:0">${svg}</div>`;
+}
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let STATE = {
+  screen: 'home',      // home | progress | history
+  phase:  'pick',      // pick | active | done
+  workoutType: null,
+  duration: 60,
+  history: [],
+  lastType: null,
+  sessionLog: {},      // { exerciseId: [{weight,reps,rpe,setNum},...] }
+  sessionStart: null,
+  progressExId: null,
+  progressView: 'charts', // charts | log | muscles
+  elapsedInterval: null,
+  restTimer: null,     // { endTime, exId }
+};
+
+// ── RENDER ENGINE ─────────────────────────────────────────────────────────────
+function el(tag, attrs, ...children) {
+  const e = document.createElement(tag);
+  if (attrs) {
+    Object.entries(attrs).forEach(([k,v]) => {
+      if (v == null) return;
+      if (k === 'style' && typeof v === 'object') Object.assign(e.style, v);
+      else if (k === 'dataset' && typeof v === 'object') Object.assign(e.dataset, v);
+      else if (k.startsWith('on')) e.addEventListener(k.slice(2).toLowerCase(), v);
+      else if (k === 'className') e.className = v;
+      else e.setAttribute(k, v);
+    });
+  }
+  children.flat(Infinity).forEach(c => {
+    if (c == null || c === false || c === undefined) return;
+    if (typeof c === 'string' || typeof c === 'number') {
+      e.appendChild(document.createTextNode(String(c)));
+    } else if (c instanceof Node) {
+      e.appendChild(c);
+    }
+  });
+  return e;
+}
+
+function html(str) {
+  if (!str) return document.createDocumentFragment();
+  const d = document.createElement('div');
+  d.innerHTML = str;
+  return d.children.length === 1 ? d.children[0] : d;
+}
+
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+  app.appendChild(buildNav());
+  const content = document.createElement('div');
+  content.style.padding = '0 0 20px';
+  if (STATE.screen === 'home') {
+    if (STATE.phase === 'pick')   content.appendChild(buildPicker());
+    if (STATE.phase === 'active') content.appendChild(buildActiveWorkout());
+    if (STATE.phase === 'done')   content.appendChild(buildDone());
+  }
+  if (STATE.screen === 'progress') content.appendChild(buildProgress());
+  if (STATE.screen === 'history')  content.appendChild(buildHistory());
+  app.appendChild(content);
+  if (STATE.restTimer) app.appendChild(buildRestOverlay());
+}
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
+function buildNav() {
+  const tabs = [['home','🏠','Train'],['progress','📈','Progress'],['history','📋','History']];
+  return el('div', {className:'nav'},
+    el('div', {className:'logo'}, 'LIFT', el('span',{},'OS')),
+    el('div', {className:'nav-tabs'},
+      ...tabs.map(([s,icon,label]) => {
+        const b = el('button', {className:'nav-tab' + (STATE.screen===s?' active':''),
+          onclick:() => { STATE.screen=s; if(s==='home'){STATE.phase='pick';} render(); }},
+          icon, STATE.screen===s ? ' '+label : '');
+        return b;
+      })
+    )
+  );
+}
+
+// ── ONBOARDING ────────────────────────────────────────────────────────────────
+function buildOnboard() {
+  const features = [
+    ['📋','Smart Workout Plans','Push & Pull days with Legs + Abs every session. Timed to 45 or 60 minutes.'],
+    ['🤖','AI Progressive Overload','After 12 sessions weight auto-increases 10%. Recommends your next target.'],
+    ['📈','Progress Charts','Track weight, estimated 1RM, and volume for every exercise.'],
+    ['⏱️','Rest Timer','90-second rest timer between sets. Turns red when time to go again.'],
+    ['💾','Saved On Device','No account, no subscription, no internet needed to train.'],
+  ];
+  const wrap = el('div', {style:{minHeight:'100vh'}},
+    el('div', {className:'ob-hero'},
+      el('div', {style:{fontSize:'64px',marginBottom:'20px'}}, '🏋️'),
+      el('div', {style:{fontSize:'32px',fontWeight:'900',color:'#fff',letterSpacing:'-0.5px',marginBottom:'10px'}},
+        'Welcome to ', el('span',{style:{color:C.orange}},'LiftOS')),
+      el('p', {style:{fontSize:'16px',color:C.muted,lineHeight:'1.5'}},
+        'Your personal gym tracker that learns how you train and helps you get stronger every session.')
+    ),
+    el('div', {style:{padding:'28px 20px'}},
+      ...features.map(([icon,title,desc]) =>
+        el('div', {className:'ob-feature'},
+          el('div', {className:'ob-icon'}, icon),
+          el('div', {},
+            el('div', {style:{fontSize:'15px',fontWeight:'700',color:C.text,marginBottom:'3px'}}, title),
+            el('div', {style:{fontSize:'13px',color:C.muted,lineHeight:'1.4'}}, desc)
+          )
+        )
+      )
+    ),
+    el('div', {style:{padding:'0 20px 48px'}},
+      el('button', {className:'btn btn-orange', onclick:() => {
+        saveData(SEEN_KEY, '1');
+        document.getElementById('onboard')?.remove();
+        document.getElementById('app').style.display = '';
+      }}, 'Start Training →'),
+      el('p', {style:{textAlign:'center',fontSize:'12px',color:C.muted,marginTop:'12px'}},
+        'Free trial · No account required · Save to Home Screen to install')
+    )
+  );
+  return wrap;
+}
+
+// ── WORKOUT PICKER ────────────────────────────────────────────────────────────
+function buildPicker() {
+  const suggested = STATE.lastType ? (STATE.lastType === 'push' ? 'pull' : 'push') : 'push';
+  let selType = STATE.workoutType || suggested;
+  let selDur  = STATE.duration || 60;
+
+  const wrap = el('div', {style:{padding:'20px'}});
+
+  // Header
+  wrap.appendChild(el('div', {style:{textAlign:'center',paddingTop:'8px',marginBottom:'28px'}},
+    el('div', {style:{fontSize:'11px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1.5px',marginBottom:'6px'}}, "Today's Session"),
+    el('h1', {style:{fontSize:'28px',fontWeight:'900',color:C.text,letterSpacing:'-0.5px'}}, 'Start Workout')
+  ));
+
+  // Suggested banner
+  const wt = WTYPE[suggested];
+  wrap.appendChild(el('div', {style:{background:wt.color+'18',border:`1px solid ${wt.color}40`,borderRadius:'14px',padding:'12px 16px',marginBottom:'18px',display:'flex',alignItems:'center',gap:'12px'}},
+    el('div', {style:{width:'8px',height:'8px',borderRadius:'50%',background:wt.color,flexShrink:'0'}}),
+    el('div', {},
+      el('div', {style:{fontSize:'13px',fontWeight:'700',color:wt.color}}, `Suggested: ${wt.short}`),
+      el('div', {style:{fontSize:'12px',color:C.muted,marginTop:'1px'}}, 'Based on your last session')
+    )
+  ));
+
+  // Workout type buttons
+  wrap.appendChild(el('div', {style:{fontSize:'11px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'10px'}}, 'Workout Type'));
+  const typeWrap = el('div', {style:{display:'flex',flexDirection:'column',gap:'8px',marginBottom:'24px'}});
+  ['push','pull'].forEach(type => {
+    const t = WTYPE[type];
+    const btn = el('button', {
+      style:{background:selType===type?t.color+'18':'transparent',border:`2px solid ${selType===type?t.color:C.border}`,borderRadius:'14px',padding:'14px 18px',cursor:'pointer',display:'flex',alignItems:'center',gap:'14px',textAlign:'left',width:'100%',transition:'all .15s'},
+      onclick:() => { selType=type; updatePreview(); refreshTypes(); }
+    },
+      el('div', {style:{width:'10px',height:'10px',borderRadius:'50%',background:t.color,flexShrink:'0'}}),
+      el('div', {style:{flex:'1'}},
+        el('div', {style:{fontSize:'15px',fontWeight:'700',color:C.text}}, t.label),
+        el('div', {style:{fontSize:'12px',color:C.muted,marginTop:'1px'}}, t.desc)
+      ),
+      selType===type ? el('div', {style:{width:'20px',height:'20px',borderRadius:'50%',background:t.color,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:'11px',fontWeight:'900'}}, '✓') : null
+    );
+    btn.dataset.type = type;
+    typeWrap.appendChild(btn);
+  });
+  wrap.appendChild(typeWrap);
+
+  function refreshTypes() {
+    typeWrap.querySelectorAll('button').forEach(b => {
+      const t = WTYPE[b.dataset.type];
+      b.style.background = selType===b.dataset.type ? t.color+'18':'transparent';
+      b.style.border = `2px solid ${selType===b.dataset.type?t.color:C.border}`;
+      const chk = b.querySelector('div:last-child');
+      if (selType===b.dataset.type && !b.querySelector('.chk')) {
+        const c = el('div',{className:'chk',style:{width:'20px',height:'20px',borderRadius:'50%',background:t.color,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontSize:'11px',fontWeight:'900'}},'✓');
+        b.appendChild(c);
+      } else if (selType!==b.dataset.type) {
+        b.querySelector('.chk')?.remove();
+      }
+    });
+  }
+
+  // Duration
+  wrap.appendChild(el('div', {style:{fontSize:'11px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'10px'}}, 'Duration'));
+  const durWrap = el('div', {style:{display:'flex',gap:'8px',marginBottom:'24px'}});
+  [45,60].forEach(d => {
+    const c = WTYPE[selType].color;
+    const btn = el('button', {
+      dataset:{dur:String(d)},
+      style:{flex:'1',background:selDur===d?WTYPE[selType].color+'18':'transparent',border:`2px solid ${selDur===d?WTYPE[selType].color:C.border}`,borderRadius:'12px',padding:'14px 8px',cursor:'pointer',textAlign:'center'},
+      onclick:() => { selDur=d; updatePreview(); refreshDurs(); }
+    },
+      el('div', {style:{fontSize:'20px',fontWeight:'800',color:C.text}}, d, el('span',{style:{fontSize:'13px',fontWeight:'600'}},'min')),
+      el('div', {style:{fontSize:'11px',color:C.muted,marginTop:'2px'}}, d===45?'Focused':'Full session')
+    );
+    durWrap.appendChild(btn);
+  });
+  wrap.appendChild(durWrap);
+
+  function refreshDurs() {
+    durWrap.querySelectorAll('button').forEach(b => {
+      const d = parseInt(b.dataset.dur);
+      const c = WTYPE[selType].color;
+      b.style.background = selDur===d?c+'18':'transparent';
+      b.style.border = `2px solid ${selDur===d?c:C.border}`;
+    });
+  }
+
+  // Plan preview
+  const previewWrap = el('div', {className:'card', style:{marginBottom:'24px'}});
+  const previewInner = el('div', {className:'card-pad'});
+  previewWrap.appendChild(previewInner);
+  wrap.appendChild(previewWrap);
+
+  function updatePreview() {
+    previewInner.innerHTML = '';
+    const plan = PLANS[selType][selDur];
+    const allIds = [...plan.main,...plan.legs,...plan.abs];
+    previewInner.appendChild(el('div', {style:{fontSize:'11px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'12px'}},
+      `Today's Plan — ${allIds.length} exercises`));
+    
+    [['main', selType==='push'?'Chest / Shoulders / Triceps':'Back / Biceps / Delts', WTYPE[selType].color],
+     ['legs', 'Legs', C.purple],
+     ['abs',  'Abs',  C.green]
+    ].forEach(([section, label, color]) => {
+      previewInner.appendChild(el('div', {style:{fontSize:'10px',color,fontWeight:'700',textTransform:'uppercase',letterSpacing:'0.8px',margin:'12px 0 8px'}}, label));
+      plan[section].forEach(id => {
+        const ex = EXERCISES[id];
+        const row = el('div', {style:{display:'flex',alignItems:'center',gap:'10px',padding:'6px 0',borderBottom:`1px solid ${C.border}`}},
+          html(getIllustration(id, color, 'small')),
+          el('span', {style:{fontSize:'13px',color:C.text,flex:'1'}}, ex.name),
+          el('span', {style:{fontSize:'11px',color:C.muted}}, `${ex.sets}×${id==='plank'?ex.reps+'s':ex.reps}`)
+        );
+        previewInner.appendChild(row);
+      });
+    });
+  }
+  updatePreview();
+
+  // Start button
+  wrap.appendChild(el('button', {className:'btn btn-orange', onclick:() => {
+    STATE.workoutType = selType;
+    STATE.duration = selDur;
+    STATE.phase = 'active';
+    STATE.sessionLog = {};
+    STATE.sessionStart = Date.now();
+    render();
+  }}, `Start ${WTYPE[selType].short} →`));
+
+  return wrap;
+}
+
+// ── ACTIVE WORKOUT ────────────────────────────────────────────────────────────
+function buildActiveWorkout() {
+  const plan = PLANS[STATE.workoutType][STATE.duration];
+  const wt = WTYPE[STATE.workoutType];
+  const allIds = [...plan.main,...plan.legs,...plan.abs];
+  const allEx = allIds.map(id => ({id, ...EXERCISES[id]}));
+
+  const wrap = el('div', {style:{padding:'20px'}});
+
+  // Header with live timer
+  const timerEl = el('div', {style:{fontSize:'30px',fontWeight:'900',color:C.text,fontVariantNumeric:'tabular-nums'}}, '00:00');
+  const setsEl  = el('div', {style:{fontSize:'24px',fontWeight:'800',color:wt.color}}, '0');
+  const progBar = el('div', {style:{height:'5px',background:wt.color,borderRadius:'6px',width:'0%',transition:'width .4s'}});
+  const progPct = el('div', {style:{fontSize:'11px',color:C.muted,textAlign:'right',marginTop:'4px'}}, '0%');
+
+  const totalSets = allEx.reduce((a,e) => a+e.sets, 0);
+
+  function updateTimer() {
+    const secs = Math.floor((Date.now()-STATE.sessionStart)/1000);
+    const m = String(Math.floor(secs/60)).padStart(2,'0');
+    const s = String(secs%60).padStart(2,'0');
+    timerEl.textContent = `${m}:${s}`;
+    const logged = Object.values(STATE.sessionLog).reduce((a,v)=>a+v.length,0);
+    setsEl.textContent = `${logged}/${totalSets}`;
+    const pct = Math.round(logged/totalSets*100);
+    progBar.style.width = pct+'%';
+    progPct.textContent = pct+'%';
+  }
+
+  if (STATE.elapsedInterval) clearInterval(STATE.elapsedInterval);
+  STATE.elapsedInterval = setInterval(updateTimer, 250);
+  updateTimer();
+
+  wrap.appendChild(el('div', {className:'card', style:{marginBottom:'20px'}},
+    el('div', {className:'card-pad'},
+      el('div', {style:{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:'14px'}},
+        el('div', {},
+          el('div', {style:{fontSize:'11px',color:wt.color,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'3px'}}, wt.label),
+          timerEl
+        ),
+        el('div', {style:{textAlign:'right'}},
+          el('div', {style:{fontSize:'11px',color:C.muted,marginBottom:'3px'}}, 'Sets logged'),
+          setsEl
+        )
+      ),
+      el('div', {style:{background:C.bg,borderRadius:'6px',height:'5px',overflow:'hidden'}}, progBar),
+      progPct
+    )
+  ));
+
+  // Exercise sections
+  [['main', STATE.workoutType==='push'?'Chest / Shoulders / Triceps':'Back / Biceps / Delts', wt.color],
+   ['legs','Legs',C.purple],
+   ['abs','Abs',C.green]
+  ].forEach(([section,label,color]) => {
+    wrap.appendChild(buildDivider(label, color));
+    plan[section].forEach(id => wrap.appendChild(buildExCard(id, color)));
+  });
+
+  // Finish button  
+  const loggedTotal = Object.values(STATE.sessionLog).reduce((a,v)=>a+v.length,0);
+  const finBtn = el('button', {className:'btn btn-orange', style:{background:`linear-gradient(135deg,${C.orange},#dc2626)`,marginTop:'8px',opacity:loggedTotal>0?'1':'0.4'},
+    onclick:() => {
+      if (!loggedTotal) return;
+      clearInterval(STATE.elapsedInterval);
+      STATE.elapsedInterval = null;
+      const entries = [];
+      Object.entries(STATE.sessionLog).forEach(([exId, sets]) => {
+        if (!sets.length) return;
+        const last = sets[sets.length-1];
+        entries.push({exId, sets:sets.length, reps:last.reps, weight:last.weight, rpe:last.rpe,
+          date:new Date().toISOString().split('T')[0], timestamp:Date.now(), workoutType:STATE.workoutType});
+      });
+      STATE.history = [...STATE.history, ...entries];
+      STATE.lastType = STATE.workoutType;
+      saveData(HISTORY_KEY, STATE.history);
+      saveData(ROTATION_KEY, STATE.lastType);
+      STATE.phase = 'done';
+      render();
+    }}, '🏁 Finish Workout');
+  wrap.appendChild(finBtn);
+
+  return wrap;
+}
+
+function buildDivider(label, color) {
+  return el('div', {className:'section-divider'},
+    el('span', {className:'section-label', style:{color}}, label)
+  );
+}
+
+function buildExCard(exId, accent) {
+  const ex = EXERCISES[exId];
+  const catColor = ex.cat==='legs'?C.purple:ex.cat==='abs'?C.green:accent;
+  const sets = STATE.sessionLog[exId] || [];
+  const loggedCount = sets.length;
+  const allDone = loggedCount >= ex.sets;
+
+  // History for this exercise
+  const exHist = STATE.history.filter(h=>h.exId===exId).sort((a,b)=>a.timestamp-b.timestamp);
+  const lastSession = exHist[exHist.length-1];
+  const show10pct = exHist.length >= 12 && loggedCount === 0;
+
+  function getStartWeight() {
+    if (sets.length > 0) return sets[sets.length-1].weight;
+    if (show10pct && lastSession) return Math.round(lastSession.weight*1.10/2.5)*2.5;
+    if (lastSession) return lastSession.weight;
+    return ex.weight;
+  }
+  function getStartReps() {
+    if (sets.length > 0) return sets[sets.length-1].reps;
+    if (lastSession) return lastSession.reps;
+    return ex.reps;
+  }
+
+  const card = el('div', {className:'card'});
+
+  // Collapsed header
+  const header = el('div', {style:{display:'flex',alignItems:'center',padding:'13px 15px',gap:'10px',cursor:'pointer'}});
+  header.appendChild(html(getIllustration(exId, catColor, 'small')));
+
+  const nameArea = el('div', {style:{flex:'1',minWidth:'0'}},
+    el('div', {style:{fontSize:'15px',fontWeight:'700',color:allDone?C.green:C.text,marginBottom:'3px',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}},
+      (allDone?'✓ ':'')+ex.name),
+    el('div', {style:{display:'flex',alignItems:'center',gap:'6px'}},
+      el('span', {className:'tag', style:{background:catColor+'20',color:catColor}}, ex.muscle),
+      el('span', {style:{fontSize:'11px',color:catColor,fontWeight:'700'}}, `${loggedCount}/${ex.sets} sets`),
+      show10pct ? el('span', {className:'tag', style:{background:C.green+'20',color:C.green}}, '+10% 🔥') : null
+    )
+  );
+  header.appendChild(nameArea);
+
+  // Progress dots
+  const dotsEl = el('div', {className:'set-dots'});
+  for(let i=0;i<ex.sets;i++) {
+    dotsEl.appendChild(el('div',{className:'set-dot',style:{background:i<loggedCount?catColor:C.border}}));
+  }
+  header.appendChild(dotsEl);
+
+  // Chart button
+  const chartBtn = el('button', {className:'btn-sm', style:{background:C.surface,border:`1px solid ${C.border}`,color:C.muted,fontSize:'16px',padding:'6px 8px'},
+    onclick:(e) => { e.stopPropagation(); STATE.screen='progress'; STATE.progressExId=exId; STATE.progressView='charts'; render(); }
+  }, '📈');
+  header.appendChild(chartBtn);
+
+  // Chevron
+  const chev = el('span', {style:{color:C.muted,fontSize:'11px',flexShrink:'0'}}, '▼');
+  header.appendChild(chev);
+
+  card.appendChild(header);
+
+  // Expandable body
+  const body = el('div', {style:{borderTop:`1px solid ${C.border}`,padding:'0 16px',maxHeight:'0',overflow:'hidden',transition:'max-height .3s ease'}});
+  let expanded = false;
+
+  header.addEventListener('click', () => {
+    expanded = !expanded;
+    body.style.maxHeight = expanded ? '9999px' : '0';
+    chev.textContent = expanded ? '▲' : '▼';
+  });
+
+  // Build expanded body content
+  const bodyInner = el('div', {style:{paddingBottom:'18px'}});
+
+  // Big illustration
+  const illWrap = el('div', {style:{marginTop:'16px',marginBottom:'14px'}});
+  illWrap.innerHTML = getIllustration(exId, catColor, 'large');
+  bodyInner.appendChild(illWrap);
+
+  // 10% notice
+  if (show10pct) {
+    bodyInner.appendChild(el('div', {style:{background:'#0a2010',border:'1px solid #1a4020',borderRadius:'10px',padding:'10px 14px',fontSize:'13px',color:C.green,marginBottom:'12px'}},
+      '🔥 Progressive overload: 12+ sessions — weight increased 10% to ', el('strong',{},getStartWeight()+'kg')
+    ));
+  }
+
+  // Last session stats
+  if (lastSession) {
+    bodyInner.appendChild(el('div', {style:{display:'flex',gap:'8px',marginBottom:'14px'}},
+      ...[[`${lastSession.weight}kg`,'Last Weight'],[lastSession.reps,'Last Reps'],[exHist.length,'Sessions']].map(([v,l]) =>
+        el('div', {className:'pr-badge', style:{flex:'1',background:C.surface}},
+          el('div', {style:{fontSize:'17px',fontWeight:'800',color:C.text}}, String(v)),
+          el('div', {style:{fontSize:'10px',color:C.muted,marginTop:'2px',textTransform:'uppercase',letterSpacing:'.4px'}}, l)
+        )
+      )
+    ));
+  }
+
+  // Set rows
+  for (let i = 0; i < ex.sets; i++) {
+    bodyInner.appendChild(buildSetRow(exId, i, catColor, getStartWeight, getStartReps));
+  }
+
+  body.appendChild(bodyInner);
+  card.appendChild(body);
+  return card;
+}
+
+function buildSetRow(exId, idx, accent, getW, getR) {
+  const ex = EXERCISES[exId];
+  const sets = STATE.sessionLog[exId] || [];
+  const isLogged = idx < sets.length;
+  const loggedData = sets[idx];
+  const isCurrent = idx === sets.length;
+
+  if (isLogged) {
+    return el('div', {style:{display:'flex',alignItems:'center',gap:'10px',padding:'10px 0',borderBottom:`1px solid ${C.border}`,opacity:'.55'}},
+      el('div', {style:{width:'26px',height:'26px',borderRadius:'50%',background:C.green+'30',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:'0',color:C.green,fontSize:'13px'}}, '✓'),
+      el('span', {style:{fontSize:'12px',color:C.muted,width:'38px'}}, `Set ${idx+1}`),
+      el('span', {style:{fontSize:'14px',color:C.text,fontWeight:'700',flex:'1'}}, `${loggedData.weight}kg × ${loggedData.reps}`),
+      el('span', {style:{fontSize:'11px',color:C.muted}}, `RPE ${loggedData.rpe}`)
+    );
+  }
+
+  if (!isCurrent) {
+    // Future set — show greyed placeholder
+    return el('div', {style:{display:'flex',alignItems:'center',gap:'10px',padding:'10px 0',borderBottom:`1px solid ${C.border}`,opacity:'.3'}},
+      el('div', {style:{width:'26px',height:'26px',borderRadius:'50%',background:accent+'20',border:`1px solid ${accent}50`,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:'0',color:accent,fontSize:'11px',fontWeight:'800'}}, String(idx+1)),
+      el('span', {style:{fontSize:'13px',color:C.muted}}, `Set ${idx+1} — complete previous set first`)
+    );
+  }
+
+  // Active set
+  let w = getW();
+  let r = getR();
+  let rpe = 8;
+
+  const wInp = el('input', {type:'number', className:'inp', value:String(w), onchange:(e)=>{w=+e.target.value;}, oninput:(e)=>{w=+e.target.value;}});
+  const rInp = el('input', {type:'number', className:'inp', value:String(r), onchange:(e)=>{r=+e.target.value;}, oninput:(e)=>{r=+e.target.value;}});
+  const rpeLabel = el('span', {style:{fontSize:'11px',color:accent,fontWeight:'700'}}, RPE_LABELS[rpe]);
+  const rpeSlider = el('input', {type:'range', min:'6', max:'10', value:'8', style:{accentColor:accent}});
+  rpeSlider.addEventListener('input', e => { rpe=+e.target.value; rpeLabel.textContent=RPE_LABELS[rpe]; });
+
+  const row = el('div', {style:{padding:'12px 0',borderBottom:`1px solid ${C.border}`}},
+    el('div', {style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'10px'}},
+      el('div', {style:{width:'26px',height:'26px',borderRadius:'50%',background:accent+'20',border:`1px solid ${accent}50`,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:'0',color:accent,fontSize:'11px',fontWeight:'800'}}, String(idx+1)),
+      el('span', {style:{fontSize:'12px',color:C.muted,fontWeight:'600'}}, `Set ${idx+1}`)
+    ),
+    el('div', {style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'8px',marginBottom:'10px'}},
+      el('div', {},
+        el('div', {style:{fontSize:'10px',color:C.muted,fontWeight:'700',letterSpacing:'.8px',marginBottom:'4px'}}, 'WEIGHT (kg)'),
+        el('div', {style:{display:'flex',alignItems:'center',gap:'4px'}},
+          el('button', {className:'btn-sm', style:{background:C.bg,border:`1px solid ${C.border}`,color:C.text,width:'32px',height:'38px'}, onclick:()=>{w=Math.max(0,+(w-2.5).toFixed(1));wInp.value=w;}}, '−'),
+          wInp,
+          el('button', {className:'btn-sm', style:{background:C.bg,border:`1px solid ${C.border}`,color:C.text,width:'32px',height:'38px'}, onclick:()=>{w=+(w+2.5).toFixed(1);wInp.value=w;}}, '+')
+        )
+      ),
+      el('div', {},
+        el('div', {style:{fontSize:'10px',color:C.muted,fontWeight:'700',letterSpacing:'.8px',marginBottom:'4px'}}, 'REPS'),
+        el('div', {style:{display:'flex',alignItems:'center',gap:'4px'}},
+          el('button', {className:'btn-sm', style:{background:C.bg,border:`1px solid ${C.border}`,color:C.text,width:'32px',height:'38px'}, onclick:()=>{r=Math.max(1,r-1);rInp.value=r;}}, '−'),
+          rInp,
+          el('button', {className:'btn-sm', style:{background:C.bg,border:`1px solid ${C.border}`,color:C.text,width:'32px',height:'38px'}, onclick:()=>{r=r+1;rInp.value=r;}}, '+')
+        )
+      )
+    ),
+    el('div', {style:{marginBottom:'12px'}},
+      el('div', {style:{display:'flex',justifyContent:'space-between',marginBottom:'5px'}},
+        el('span', {style:{fontSize:'10px',color:C.muted,fontWeight:'700',letterSpacing:'.8px'}}, `EXERTION — RPE ${rpe}`),
+        rpeLabel
+      ),
+      rpeSlider,
+      el('div', {style:{display:'flex',justifyContent:'space-between',marginTop:'2px'}},
+        ...[6,7,8,9,10].map(v => el('span',{style:{fontSize:'10px',color:v===rpe?accent:C.muted,fontWeight:v===rpe?'700':'400'}},String(v)))
+      )
+    ),
+    el('button', {className:'btn btn-green', style:{background:accent},
+      onclick:() => {
+        if (!STATE.sessionLog[exId]) STATE.sessionLog[exId] = [];
+        STATE.sessionLog[exId].push({weight:w, reps:r, rpe, setNum:idx+1});
+        // Start rest timer if more sets remain
+        if (idx+1 < ex.sets) {
+          STATE.restTimer = {endTime: Date.now()+90000, exId};
+        }
+        render();
+      }
+    }, `✓ Log Set ${idx+1}`)
+  );
+  return row;
+}
+
+// ── REST TIMER OVERLAY ────────────────────────────────────────────────────────
+function buildRestOverlay() {
+  if (!STATE.restTimer) return el('div');
+  const TOTAL = 90;
+  const overlay = el('div', {className:'rest-overlay'});
+  const box = el('div', {className:'rest-box'});
+
+  el('div',{style:{fontSize:'12px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1.5px',marginBottom:'20px'}});
+
+  const label = el('div', {style:{fontSize:'12px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1.5px',marginBottom:'20px'}}, 'Rest Time');
+  box.appendChild(label);
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('width','110'); svg.setAttribute('height','110');
+  svg.style.display='block'; svg.style.margin='0 auto 16px';
+
+  const bgCirc = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  bgCirc.setAttribute('cx','55');bgCirc.setAttribute('cy','55');bgCirc.setAttribute('r','42');
+  bgCirc.setAttribute('fill','none');bgCirc.setAttribute('stroke',C.border);bgCirc.setAttribute('stroke-width','6');
+  svg.appendChild(bgCirc);
+
+  const r=42, circ=2*Math.PI*r;
+  const fgCirc = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  fgCirc.setAttribute('cx','55');fgCirc.setAttribute('cy','55');fgCirc.setAttribute('r','42');
+  fgCirc.setAttribute('fill','none');fgCirc.setAttribute('stroke',C.orange);fgCirc.setAttribute('stroke-width','6');
+  fgCirc.setAttribute('stroke-linecap','round');
+  fgCirc.setAttribute('transform','rotate(-90 55 55)');
+  fgCirc.style.transition='stroke-dashoffset .25s linear, stroke .25s';
+  svg.appendChild(fgCirc);
+
+  const numText = document.createElementNS('http://www.w3.org/2000/svg','text');
+  numText.setAttribute('x','55');numText.setAttribute('y','62');numText.setAttribute('text-anchor','middle');
+  numText.setAttribute('fill',C.text);numText.setAttribute('font-size','26');numText.setAttribute('font-weight','800');
+  numText.setAttribute('font-family','system-ui');
+  svg.appendChild(numText);
+  box.appendChild(svg);
+
+  const msgEl = el('div',{style:{fontSize:'12px',color:C.muted,marginBottom:'16px',textAlign:'center'}},'');
+  box.appendChild(msgEl);
+
+  const skipBtn = el('button', {className:'btn-sm', style:{background:C.surface,border:`1px solid ${C.border}`,color:C.muted,padding:'10px 28px'},
+    onclick:() => { clearInterval(tId); STATE.restTimer=null; render(); }
+  }, 'Skip Rest');
+  box.appendChild(skipBtn);
+  overlay.appendChild(box);
+
+  const endTime = STATE.restTimer.endTime;
+  function tick() {
+    const secs = Math.max(0, Math.round((endTime - Date.now())/1000));
+    const pct = secs/TOTAL;
+    fgCirc.setAttribute('stroke-dasharray', String(circ));
+    fgCirc.setAttribute('stroke-dashoffset', String(circ*(1-pct)));
+    fgCirc.setAttribute('stroke', secs > 20 ? C.orange : C.red);
+    numText.textContent = String(secs);
+    msgEl.textContent = secs>60?'Take your time':secs>30?'Almost ready…':'Get ready! 💪';
+    if (secs <= 0) { clearInterval(tId); STATE.restTimer=null; render(); }
+  }
+  const tId = setInterval(tick, 250);
+  tick();
+
+  return overlay;
+}
+
+// ── DONE SCREEN ───────────────────────────────────────────────────────────────
+function buildDone() {
+  const next = STATE.lastType==='push' ? 'pull' : 'push';
+  const nextWt = WTYPE[next];
+  return el('div', {style:{padding:'20px',textAlign:'center',paddingTop:'60px'}},
+    el('div', {style:{fontSize:'76px',marginBottom:'16px'}}, '🏆'),
+    el('div', {style:{fontSize:'11px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1.5px',marginBottom:'8px'}}, 'Session Complete'),
+    el('h2', {style:{fontSize:'28px',fontWeight:'900',color:C.text,margin:'0 0 10px'}}, 'Great Work!'),
+    el('p', {style:{color:C.muted,marginBottom:'20px',fontSize:'15px'}}, 'Your session has been saved.'),
+    el('div', {style:{background:nextWt.color+'18',border:`1px solid ${nextWt.color}40`,borderRadius:'14px',padding:'14px 18px',marginBottom:'28px',textAlign:'left'}},
+      el('div', {style:{fontSize:'11px',color:nextWt.color,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'4px'}}, 'Next Up'),
+      el('div', {style:{fontSize:'16px',fontWeight:'800',color:C.text}}, nextWt.label),
+      el('div', {style:{fontSize:'12px',color:C.muted,marginTop:'2px'}}, nextWt.desc)
+    ),
+    el('button', {className:'btn btn-orange', style:{marginBottom:'12px'},
+      onclick:()=>{ STATE.phase='pick'; render(); }}, 'Start New Workout'),
+    el('button', {className:'btn btn-surface',
+      onclick:()=>{ STATE.screen='progress'; render(); }}, 'View Progress →')
+  );
+}
+
+// ── PROGRESS SCREEN ───────────────────────────────────────────────────────────
+function buildProgress() {
+  const allExIds = Object.keys(EXERCISES);
+  const withHist = allExIds.filter(id => STATE.history.some(h=>h.exId===id));
+
+  const wrap = el('div', {style:{padding:'20px'}});
+  wrap.appendChild(el('div', {style:{marginBottom:'18px'}},
+    el('div', {style:{fontSize:'11px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'4px'}}, 'Analytics'),
+    el('h2', {style:{fontSize:'26px',fontWeight:'900',color:C.text}}, 'Progress')
+  ));
+
+  if (!withHist.length) {
+    wrap.appendChild(el('div', {className:'card card-pad', style:{textAlign:'center',padding:'48px 20px'}},
+      el('div', {style:{fontSize:'52px',marginBottom:'14px'}}, '🌱'),
+      el('div', {style:{fontSize:'17px',fontWeight:'700',color:C.text,marginBottom:'6px'}}, 'Nothing here yet'),
+      el('div', {style:{color:C.muted,fontSize:'14px'}}, 'Complete your first workout to start tracking')
+    ));
+    return wrap;
+  }
+
+  // Tabs
+  const tabs = [['charts','📈 Charts'],['log','📋 Log'],['muscles','💪 Muscles']];
+  const tabBar = el('div', {style:{display:'flex',gap:'6px',marginBottom:'16px'}});
+  tabs.forEach(([v,label]) => {
+    tabBar.appendChild(el('button', {
+      className:'btn-sm',
+      style:{flex:'1',background:STATE.progressView===v?'#f97316':'transparent',border:`1px solid ${STATE.progressView===v?C.orange:C.border}`,color:STATE.progressView===v?'#fff':C.muted},
+      onclick:()=>{ STATE.progressView=v; render(); }
+    }, label));
+  });
+  wrap.appendChild(tabBar);
+
+  // Exercise selector
+  let selId = STATE.progressExId || withHist[0];
+  if (!withHist.includes(selId)) selId = withHist[0];
+
+  if (STATE.progressView !== 'muscles') {
+    const sel = el('select', {style:{marginBottom:'14px'}, onchange:(e)=>{ STATE.progressExId=e.target.value; render(); }});
+    withHist.forEach(id => {
+      const ex = EXERCISES[id];
+      const o = el('option', {value:id}, `${ex.name} — ${ex.muscle}`);
+      if (id === selId) o.selected = true;
+      sel.appendChild(o);
+    });
+    wrap.appendChild(sel);
+  }
+
+  if (STATE.progressView === 'charts') {
+    const ex = EXERCISES[selId];
+    const accent = ex.cat==='legs'?C.purple:ex.cat==='abs'?C.green:ex.cat==='pull'?C.blue:C.orange;
+    const exHist = STATE.history.filter(h=>h.exId===selId).sort((a,b)=>a.timestamp-b.timestamp);
+    const recent = exHist.slice(-16);
+
+    // Illustration header
+    const illDiv = el('div', {style:{position:'relative',marginBottom:'14px',borderRadius:'14px',overflow:'hidden'}});
+    illDiv.innerHTML = getIllustration(selId, accent, 'large');
+    const overlay = el('div', {style:{position:'absolute',inset:'0',background:'linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 50%)',pointerEvents:'none'}});
+    illDiv.appendChild(overlay);
+    const nameDiv = el('div', {style:{position:'absolute',bottom:'12px',left:'14px'}},
+      el('div', {style:{fontSize:'18px',fontWeight:'800',color:'#fff'}}, ex.name),
+      el('span', {className:'tag', style:{background:accent+'cc',color:'#fff'}}, ex.muscle)
+    );
+    illDiv.appendChild(nameDiv);
+
+    // Trend badge
+    if (recent.length >= 2) {
+      const trend = +(recent[recent.length-1].weight - recent[recent.length-2].weight).toFixed(1);
+      const tBadge = el('div', {style:{position:'absolute',top:'12px',right:'12px',background:'rgba(0,0,0,.7)',borderRadius:'10px',padding:'6px 12px',fontSize:'14px',fontWeight:'800',color:trend>=0?C.green:C.red}},
+        (trend>=0?'↑':'↓')+' '+Math.abs(trend)+'kg');
+      illDiv.appendChild(tBadge);
+    }
+    wrap.appendChild(illDiv);
+
+    // PR stats
+    const prW   = exHist.length ? Math.max(...exHist.map(h=>h.weight)) : 0;
+    const prORM = exHist.length ? Math.max(...exHist.map(h=>calc1RM(h.weight,h.reps))) : 0;
+    const prVol = exHist.length ? Math.max(...exHist.map(h=>h.sets*h.reps*h.weight)) : 0;
+    const prRep = exHist.length ? Math.max(...exHist.map(h=>h.reps)) : 0;
+    wrap.appendChild(el('div', {style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr 1fr',gap:'8px',marginBottom:'14px'}},
+      ...[[prW+'kg','Best Wt',accent],[prORM+'kg','1RM',C.blue],[prVol>999?(prVol/1000).toFixed(1)+'k':prVol,'Volume',C.purple],[prRep,'Reps',C.green]].map(([v,l,c])=>
+        el('div', {className:'pr-badge', style:{background:C.card,border:`1px solid ${c}30`}},
+          el('div', {style:{fontSize:'16px',fontWeight:'900',color:c}}, String(v)),
+          el('div', {style:{fontSize:'9px',color:C.muted,marginTop:'2px',textTransform:'uppercase',letterSpacing:'.3px'}}, l)
+        )
+      )
+    ));
+
+    if (recent.length < 2) {
+      wrap.appendChild(el('div', {className:'card card-pad', style:{textAlign:'center',padding:'32px'}},
+        el('div', {style:{fontSize:'36px',marginBottom:'10px'}}, '📊'),
+        el('div', {style:{color:C.muted}}, 'Log 2+ sessions to see charts')
+      ));
+    } else {
+      // Weight chart
+      wrap.appendChild(buildCanvasChart('Weight Over Time', recent.map((h,i)=>({x:h.date?.slice(5)||i, y:h.weight})), accent, prW));
+      // 1RM chart
+      wrap.appendChild(buildCanvasChart('Estimated 1-Rep Max', recent.map((h,i)=>({x:h.date?.slice(5)||i, y:calc1RM(h.weight,h.reps)})), C.blue, null));
+      // Volume bar chart
+      wrap.appendChild(buildCanvasChart('Session Volume', recent.map((h,i)=>({x:h.date?.slice(5)||i, y:h.sets*h.reps*h.weight})), C.purple, null, true));
+    }
+  }
+
+  if (STATE.progressView === 'log') {
+    const ex = EXERCISES[selId];
+    const accent = ex.cat==='legs'?C.purple:ex.cat==='abs'?C.green:ex.cat==='pull'?C.blue:C.orange;
+    const exHist = STATE.history.filter(h=>h.exId===selId).sort((a,b)=>b.timestamp-a.timestamp);
+    const prW = exHist.length ? Math.max(...exHist.map(h=>h.weight)) : 0;
+
+    const table = el('div', {className:'card', style:{overflow:'hidden'}});
+    // Header
+    table.appendChild(el('div', {style:{display:'grid',gridTemplateColumns:'1fr 48px 48px 62px 40px',gap:'4px',padding:'10px 16px',background:C.surface,borderBottom:`1px solid ${C.border}`}},
+      ...['Date','Sets','Reps','Weight','RPE'].map(h=>el('div',{style:{fontSize:'10px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'.6px',textAlign:h==='Date'?'left':'center'}},h))
+    ));
+    exHist.forEach((h,i) => {
+      const isPR = h.weight === prW;
+      table.appendChild(el('div', {style:{display:'grid',gridTemplateColumns:'1fr 48px 48px 62px 40px',gap:'4px',padding:'11px 16px',borderBottom:i<exHist.length-1?`1px solid ${C.border}`:'none',background:isPR?accent+'08':'transparent',alignItems:'center'}},
+        el('div', {style:{fontSize:'12px',color:C.muted}},
+          h.date, isPR?el('span',{style:{marginLeft:'5px',fontSize:'9px',background:accent+'30',color:accent,borderRadius:'4px',padding:'1px 5px',fontWeight:'700'}},'PR'):null),
+        el('div', {style:{fontSize:'14px',color:C.text,fontWeight:'600',textAlign:'center'}}, String(h.sets)),
+        el('div', {style:{fontSize:'14px',color:C.text,fontWeight:'600',textAlign:'center'}}, String(h.reps)),
+        el('div', {style:{fontSize:'14px',fontWeight:'800',color:accent,textAlign:'center'}}, h.weight+'kg'),
+        el('div', {style:{fontSize:'13px',color:C.muted,textAlign:'center'}}, h.rpe||'—')
+      ));
+    });
+    if (!exHist.length) table.appendChild(el('div',{style:{padding:'32px',textAlign:'center',color:C.muted}},'No sessions yet'));
+    wrap.appendChild(table);
+  }
+
+  if (STATE.progressView === 'muscles') {
+    const groups = {};
+    Object.entries(EXERCISES).forEach(([id, ex]) => {
+      const hist = STATE.history.filter(h=>h.exId===id);
+      if (!hist.length) return;
+      if (!groups[ex.muscle]) groups[ex.muscle] = {muscle:ex.muscle,cat:ex.cat,sessions:0,last:null};
+      groups[ex.muscle].sessions += hist.length;
+      hist.forEach(h => { if(!groups[ex.muscle].last||h.date>groups[ex.muscle].last) groups[ex.muscle].last=h.date; });
+    });
+    const sorted = Object.values(groups).sort((a,b)=>b.sessions-a.sessions);
+    const maxS = sorted.length ? Math.max(...sorted.map(g=>g.sessions)) : 1;
+    const card = el('div', {className:'card card-pad'});
+    card.appendChild(el('div',{style:{fontSize:'12px',fontWeight:'700',color:C.muted,marginBottom:'14px',textTransform:'uppercase',letterSpacing:'.8px'}},'Muscle Group Volume'));
+    sorted.forEach(g => {
+      const color = g.cat==='legs'?C.purple:g.cat==='abs'?C.green:g.cat==='pull'?C.blue:C.orange;
+      card.appendChild(el('div',{style:{marginBottom:'14px'}},
+        el('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:'4px'}},
+          el('span',{style:{fontSize:'13px',color:C.text,fontWeight:'600'}},g.muscle),
+          el('span',{style:{fontSize:'11px',color:C.muted}},`${g.sessions} sets · ${g.last||'—'}`)
+        ),
+        el('div',{style:{background:C.bg,borderRadius:'6px',height:'8px',overflow:'hidden'}},
+          el('div',{style:{width:`${Math.round(g.sessions/maxS*100)}%`,height:'100%',background:color,borderRadius:'6px',transition:'width .6s ease'}})
+        )
+      ));
+    });
+    wrap.appendChild(card);
+  }
+
+  return wrap;
+}
+
+// ── CANVAS CHART ──────────────────────────────────────────────────────────────
+function buildCanvasChart(title, data, color, prVal, isBar) {
+  const card = el('div', {className:'card', style:{padding:'16px 14px',marginBottom:'14px'}});
+  card.appendChild(el('div',{style:{fontSize:'13px',fontWeight:'700',color:C.text,marginBottom:'14px'}}, title));
+
+  const canvas = el('canvas', {width:'480', height: isBar?140:170});
+  canvas.style.width = '100%';
+  canvas.style.height = (isBar?140:170)+'px';
+  card.appendChild(canvas);
+
+  // Draw after DOM insertion
+  setTimeout(() => {
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const pad = {top:10, right:10, bottom:30, left:38};
+    const cW = W-pad.left-pad.right, cH = H-pad.top-pad.bottom;
+
+    ctx.clearRect(0,0,W,H);
+
+    if (!data.length) return;
+
+    const vals = data.map(d=>d.y);
+    const min = Math.min(...vals)*0.97;
+    const max = Math.max(...vals)*1.03 || 1;
+
+    function xPos(i) { return pad.left + (i/(data.length-1||1))*cW; }
+    function yPos(v) { return pad.top + cH - ((v-min)/(max-min||1))*cH; }
+
+    // Grid
+    ctx.strokeStyle = C.border;
+    ctx.lineWidth = 1;
+    for (let t=0;t<=4;t++) {
+      const y = pad.top + (t/4)*cH;
+      ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(pad.left+cW,y); ctx.stroke();
+      const val = max - (t/4)*(max-min);
+      ctx.fillStyle = C.muted; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+      ctx.fillText(Math.round(val), pad.left-4, y+3);
+    }
+
+    // PR line
+    if (prVal) {
+      const py = yPos(prVal);
+      ctx.strokeStyle = color+'44'; ctx.lineWidth=1; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(pad.left,py); ctx.lineTo(pad.left+cW,py); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle=color; ctx.font='10px system-ui'; ctx.textAlign='left';
+      ctx.fillText('PR', pad.left+4, py-3);
+    }
+
+    if (isBar) {
+      const barW = Math.max(4, cW/data.length*0.6);
+      data.forEach((d,i) => {
+        const x = pad.left + (i+0.5)/data.length*cW - barW/2;
+        const y = yPos(d.y);
+        const h = pad.top+cH - y;
+        ctx.fillStyle = color+'cc';
+        ctx.beginPath();
+        ctx.roundRect(x, y, barW, h, [3,3,0,0]);
+        ctx.fill();
+      });
+    } else {
+      // Line
+      ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineJoin='round';
+      ctx.beginPath();
+      data.forEach((d,i) => {
+        const x=xPos(i), y=yPos(d.y);
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+      // Dots
+      data.forEach((d,i) => {
+        ctx.fillStyle = C.bg; ctx.beginPath(); ctx.arc(xPos(i),yPos(d.y),4,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle = color; ctx.beginPath(); ctx.arc(xPos(i),yPos(d.y),3,0,Math.PI*2); ctx.fill();
+      });
+    }
+
+    // X labels (show only a few)
+    ctx.fillStyle = C.muted; ctx.font = '10px system-ui'; ctx.textAlign='center';
+    const step = Math.max(1, Math.floor(data.length/4));
+    data.forEach((d,i) => {
+      if (i%step===0 || i===data.length-1) {
+        ctx.fillText(String(d.x), xPos(i), H-6);
+      }
+    });
+  }, 0);
+
+  return card;
+}
+
+// ── HISTORY SCREEN ────────────────────────────────────────────────────────────
+function buildHistory() {
+  const grouped = {};
+  STATE.history.forEach(h => {
+    const d = h.date||'?';
+    if (!grouped[d]) grouped[d]=[];
+    grouped[d].push(h);
+  });
+  const dates = Object.keys(grouped).sort().reverse();
+
+  const wrap = el('div', {style:{padding:'20px'}});
+  wrap.appendChild(el('div', {style:{marginBottom:'20px'}},
+    el('div', {style:{fontSize:'11px',color:C.muted,fontWeight:'700',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'4px'}}, 'All Sessions'),
+    el('h2', {style:{fontSize:'26px',fontWeight:'900',color:C.text}}, 'History')
+  ));
+
+  if (!dates.length) {
+    wrap.appendChild(el('div', {className:'card card-pad', style:{textAlign:'center',padding:'48px'}},
+      el('div',{style:{fontSize:'52px',marginBottom:'12px'}},'📭'),
+      el('div',{style:{color:C.muted}},'No sessions yet')
+    ));
+    return wrap;
+  }
+
+  dates.forEach(date => {
+    const entries = grouped[date];
+    const wt = WTYPE[entries[0]?.workoutType] || WTYPE.push;
+    const card = el('div', {className:'card card-pad', style:{marginBottom:'12px'}});
+    card.appendChild(el('div', {style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'12px'}},
+      el('div', {style:{fontSize:'12px',color:wt.color,fontWeight:'700',textTransform:'uppercase',letterSpacing:'.5px'}}, date),
+      el('span', {className:'tag', style:{background:wt.color+'20',color:wt.color}}, wt.short)
+    ));
+    entries.forEach((h,i) => {
+      const ex = EXERCISES[h.exId];
+      if (!ex) return;
+      const c = ex.cat==='legs'?C.purple:ex.cat==='abs'?C.green:wt.color;
+      card.appendChild(el('div', {style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'9px 0',borderBottom:i<entries.length-1?`1px solid ${C.border}`:'none'}},
+        el('div', {style:{fontSize:'14px',color:C.text,fontWeight:'600'}}, ex.name),
+        el('div', {style:{display:'flex',gap:'7px',alignItems:'center'}},
+          el('span',{style:{fontSize:'12px',color:C.muted}},`${h.sets}×${h.reps}`),
+          el('span',{className:'tag',style:{background:c+'22',color:c}},h.weight+'kg')
+        )
+      ));
+    });
+    wrap.appendChild(card);
+  });
+
+  return wrap;
+}
+
+// ── BOOT ─────────────────────────────────────────────────────────────────────
+function boot() {
+  // Load saved data
+  STATE.history  = loadData(HISTORY_KEY)  || [];
+  STATE.lastType = loadData(ROTATION_KEY) || null;
+  const seen     = loadData(SEEN_KEY);
+
+  const splash = document.getElementById('splash');
+  const appDiv = document.getElementById('app');
+
+  function showApp() {
+    splash.classList.add('out');
+    setTimeout(() => { splash.style.display='none'; }, 650);
+    appDiv.style.display = '';
+    render();
+  }
+
+  if (!seen) {
+    // Show onboarding overlay
+    const ob = document.createElement('div');
+    ob.id = 'onboard';
+    ob.style.cssText = 'position:fixed;inset:0;background:#0c0c14;z-index:9998;overflow-y:auto;';
+
+    // Override startApp button in onboard to also showApp
+    const obContent = buildOnboard();
+    // Find the start button and override
+    const startBtn = obContent.querySelector('button');
+    if (startBtn) {
+      const origClick = startBtn.onclick;
+      startBtn.onclick = (e) => {
+        saveData(SEEN_KEY, '1');
+        ob.remove();
+        showApp();
+      };
+    }
+    ob.appendChild(obContent);
+
+    setTimeout(() => {
+      splash.classList.add('out');
+      setTimeout(() => { splash.style.display='none'; }, 650);
+      document.body.appendChild(ob);
+    }, 1800);
+  } else {
+    setTimeout(showApp, 1800);
+  }
+}
+
+// Global error protection
+window.onerror = function(msg, src, line, col, err) {
+  console.error('LiftOS error:', msg, 'line', line);
+  return false;
+};
+
+// Start when DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
+</script>
+
+<script>
+// Register Service Worker for PWA installability (Android Chrome)
+if ('serviceWorker' in navigator) {
+  // Inline service worker - no external file needed
+  const swCode = `
+    const CACHE = 'liftos-v1';
+    self.addEventListener('install', e => { self.skipWaiting(); });
+    self.addEventListener('activate', e => { e.waitUntil(self.clients.claim()); });
+    self.addEventListener('fetch', e => {
+      // Cache-first for everything (app is fully self-contained)
+      e.respondWith(
+        caches.open(CACHE).then(c =>
+          c.match(e.request).then(r => r || fetch(e.request).then(res => {
+            if (res.ok) c.put(e.request, res.clone());
+            return res;
+          }).catch(() => r))
+        )
+      );
+    });
+  `;
+  const blob = new Blob([swCode], {type: 'application/javascript'});
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl, {scope: './'}).catch(() => {});
+}
+
+// Android Chrome install prompt
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show install banner after 3 seconds
+  setTimeout(showInstallBanner, 3000);
+});
+
+function showInstallBanner() {
+  if (!deferredPrompt) return;
+  if (localStorage.getItem('liftos_install_dismissed')) return;
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  if (isStandalone) return;
+  
+  const banner = document.createElement('div');
+  banner.id = 'install-banner';
+  banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#17172a;border-top:1px solid #22223a;padding:14px 20px;display:flex;align-items:center;gap:12px;z-index:500;padding-bottom:max(14px,env(safe-area-inset-bottom));';
+  banner.innerHTML = `
+    <div style="flex:1;font-size:13px;color:#f0f0ff;line-height:1.4">
+      <strong style="color:#f97316">Add LiftOS to Home Screen</strong><br/>
+      <span style="color:#5a5a7a;font-size:12px">Install for the full app experience</span>
+    </div>
+    <button onclick="installApp()" style="background:#f97316;border:none;border-radius:10px;padding:10px 16px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">Install</button>
+    <button onclick="dismissInstall()" style="background:none;border:none;color:#5a5a7a;font-size:20px;cursor:pointer;padding:4px;">✕</button>
+  `;
+  document.body.appendChild(banner);
+}
+
+function installApp() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(() => { deferredPrompt = null; dismissInstall(); });
+}
+
+function dismissInstall() {
+  localStorage.setItem('liftos_install_dismissed', '1');
+  document.getElementById('install-banner')?.remove();
+}
+
+// iOS: show manual instructions since iOS doesn't support beforeinstallprompt
+window.addEventListener('load', () => {
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone = window.navigator.standalone;
+  const dismissed = localStorage.getItem('liftos_ios_dismissed');
+  if (isIOS && !isStandalone && !dismissed) {
+    setTimeout(() => {
+      const banner = document.createElement('div');
+      banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#17172a;border-top:1px solid #22223a;padding:16px 20px;z-index:500;padding-bottom:max(16px,env(safe-area-inset-bottom));';
+      banner.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+          <div style="font-size:14px;font-weight:700;color:#f0f0ff;">Add to Home Screen</div>
+          <button onclick="this.closest('div[style]').remove();localStorage.setItem('liftos_ios_dismissed','1')" style="background:none;border:none;color:#5a5a7a;font-size:20px;cursor:pointer;margin-top:-4px;">✕</button>
+        </div>
+        <div style="font-size:13px;color:#5a5a7a;line-height:1.6;">
+          1. Tap the <strong style="color:#f97316">Share</strong> button <span style="font-size:16px">⬆</span> at the bottom of Safari<br/>
+          2. Scroll down and tap <strong style="color:#f0f0ff">"Add to Home Screen"</strong><br/>
+          3. Tap <strong style="color:#f0f0ff">"Add"</strong> — LiftOS icon appears on your home screen
+        </div>
+      `;
+      document.body.appendChild(banner);
+    }, 3500);
+  }
+});
+</script>
+</body>
+</html>
